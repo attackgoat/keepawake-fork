@@ -122,7 +122,7 @@ impl Drop for KeepAwake {
     fn drop(&mut self) {
         if self.options.display {
             if let (Some(p), Some(cookie)) = (self.screensaver_proxy.as_ref(), self.cookie) {
-                p.un_inhibit(cookie).unwrap()
+                let _ = p.un_inhibit(cookie);
             }
         }
     }
